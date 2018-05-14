@@ -31,8 +31,8 @@
     "@types/pify": "^3.0.1",
     "@types/rimraf": "^2.0.2",
     "@types/tmp": "0.0.33",
-    "gts": "^0.5.4",
-    "typescript": "~2.6.1"
+    "gts": "^0.7.1",
+    "typescript": "~2.9.0"
   },
   "dependencies": {
     "glob": "^7.1.2",
