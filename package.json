@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "author": "Google LLC",
   "license": "Apache-2.0",
+  "repository": "google/post-install-check",
   "main": "./build/src/index.js",
   "types": "./build/src/index.d.ts",
   "files": [
