@@ -12,14 +12,14 @@ The Install Check library is designed to be used as part of the tests for your l
 ## Installation
 
 ```sh
-$ npm install --save-dev post-install
+$ npm install --save-dev post-install-check
 ```
 
 ## Usage
 The following could be the contents of a test file in your module that is run with `mocha` as part of your test suite.
 
 ```ts
-import * as check from 'install-check';
+import * as check from 'post-install-check';
 
 const tsCode = `
   import * as express from 'express';
