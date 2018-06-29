@@ -81,12 +81,12 @@ check.testInstallation(TS_SAMPLES, JS_SAMPLES, {
 ```
 
 ## Questions/problems?
-If you've found an bug/issue, please [file it on GitHub][https://github.com/google/post-install-check/issues].
+If you've found an bug/issue, please [file it on GitHub](https://github.com/google/post-install-check/issues).
 
 ## Contributing
-See [CONTRIBUTING][https://github.com/google/post-install-check/blob/master/CONTRIBUTING.md].
+See [CONTRIBUTING](https://github.com/google/post-install-check/blob/master/CONTRIBUTING.md).
 
 ## License
-This library is licensed under Apache 2.0. Full license text is available in [LICENSE][https://github.com/google/post-install-check/blob/master/LICENSE].
+This library is licensed under Apache 2.0. Full license text is available in [LICENSE](https://github.com/google/post-install-check/blob/master/LICENSE).
 
 *Made with ❤️ by the Google Node.js team*
