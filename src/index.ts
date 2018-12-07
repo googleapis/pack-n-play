@@ -23,7 +23,9 @@ import {globP, mkdirP, rimrafP, spawnP, tmpDirP, writeFileP} from './utils';
 const INDEX_TS = 'index.ts';
 const INDEX_JS = 'index.js';
 
-export interface TestConfig { timeout: number; }
+export interface TestConfig {
+  timeout: number;
+}
 
 export interface CodeSample {
   code: string;
