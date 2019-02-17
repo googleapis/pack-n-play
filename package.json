@@ -24,20 +24,20 @@
     "posttest": "npm run check"
   },
   "devDependencies": {
-    "@types/glob": "^5.0.35",
+    "@types/glob": "^7.1.1",
     "@types/mocha": "^5.2.0",
-    "@types/node": "^9.6.6",
+    "@types/node": "^11.9.4",
     "@types/once": "^1.4.0",
     "@types/pify": "^3.0.1",
     "@types/rimraf": "^2.0.2",
-    "@types/tmp": "0.0.33",
-    "gts": "^0.7.1",
-    "typescript": "~2.9.0"
+    "@types/tmp": "0.0.34",
+    "gts": "^0.9.0",
+    "typescript": "~3.3.3"
   },
   "dependencies": {
     "glob": "^7.1.2",
     "once": "^1.4.0",
-    "pify": "^3.0.0",
+    "pify": "^4.0.1",
     "rimraf": "^2.6.2",
     "tmp": "0.0.33"
   }
