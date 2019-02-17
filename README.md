@@ -1,6 +1,9 @@
 <img src="https://avatars2.githubusercontent.com/u/2810941?v=3&s=96" alt="Google Cloud Platform logo" title="Google Cloud Platform" align="right" height="96" width="96"/>
 
 # Post Install Check
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/google/post-install-check.svg)](https://greenkeeper.io/)
+
 > Make sure TypeScript projects can use the `d.ts` you're feeding them.
 
 **This is not an officially supported Google product.**
