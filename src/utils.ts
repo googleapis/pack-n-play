@@ -39,10 +39,10 @@ function promisifyChildProcess(
   return new Promise((resolve, reject) => {
     const exit = (err?: Error) => once(() => err ? reject(err) : resolve())();
     const resLog = log ? log : (text: string) => {};
-    childProcess.stdout.on('data', (txt) => {
+    childProcess.stdout!.on('data', (txt) => {
       resLog(txt.toString());
     });
-    childProcess.stderr.on('data', (txt) => {
+    childProcess.stderr!.on('data', (txt) => {
       resLog(txt.toString());
     });
     childProcess.on('error', exit);
