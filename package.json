@@ -26,7 +26,7 @@
   "devDependencies": {
     "@types/glob": "^7.1.1",
     "@types/mocha": "^5.2.0",
-    "@types/node": "^11.9.4",
+    "@types/node": "^11.11.4",
     "@types/once": "^1.4.0",
     "@types/pify": "^3.0.1",
     "@types/rimraf": "^2.0.2",
