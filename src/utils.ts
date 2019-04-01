@@ -67,6 +67,7 @@ export async function spawnP(
   }
   await promisifyChildProcess(
       spawn(
-          command, args, Object.assign({stdio: 'pipe', shell: true}, options)),
+          command, args || [],
+          Object.assign({stdio: 'pipe', shell: true}, options)),
       log);
 }
