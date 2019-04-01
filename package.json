@@ -30,7 +30,7 @@
     "@types/once": "^1.4.0",
     "@types/pify": "^3.0.1",
     "@types/rimraf": "^2.0.2",
-    "@types/tmp": "0.0.34",
+    "@types/tmp": "0.1.0",
     "gts": "^0.9.0",
     "typescript": "~3.3.3"
   },
