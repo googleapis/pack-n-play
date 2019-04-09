@@ -4,6 +4,7 @@
 
 [![NPM Version](https://img.shields.io/npm/v/post-install-check.svg)](https://npmjs.org/package/post-install-check)
 [![Build Status](https://circleci.com/gh/google/post-install-check.svg?style=shield)](https://circleci.com/gh/google/post-install-check)
+[![Known Vulnerabilities](https://snyk.io/test/github/google/post-install-check/badge.svg?targetFile=package.json)](https://snyk.io/test/github/google/post-install-check?targetFile=package.json)
 [![Code Style: Google](https://img.shields.io/badge/code%20style-google-blueviolet.svg)](https://github.com/google/gts)
 
 > Make sure TypeScript projects can use the `d.ts` you're feeding them.
