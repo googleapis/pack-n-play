@@ -2,11 +2,12 @@
 
 # Post Install Check
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/google/post-install-check.svg)](https://greenkeeper.io/)
+[![NPM Version](https://img.shields.io/npm/v/post-install-check.svg)](https://npmjs.org/package/post-install-check)
+[![Build Status](https://circleci.com/gh/google/post-install-check.svg?style=shield)](https://circleci.com/gh/google/post-install-check)
+[![Known Vulnerabilities](https://snyk.io/test/github/google/post-install-check/badge.svg?targetFile=package.json)](https://snyk.io/test/github/google/post-install-check?targetFile=package.json)
+[![Code Style: Google](https://img.shields.io/badge/code%20style-google-blueviolet.svg)](https://github.com/google/gts)
 
 > Make sure TypeScript projects can use the `d.ts` you're feeding them.
-
-**This is not an officially supported Google product.**
 
 It's not uncommon to ship a library written in TypeScript that exports type definitions that cannot be used by dependent code.  Typically if the library does not export all types correctly, a TypeScript codebase using the library will fail to compile, potentially forcing the codebase to use the library without typechecks.
 
@@ -92,4 +93,5 @@ See [CONTRIBUTING](https://github.com/google/post-install-check/blob/master/CONT
 ## License
 This library is licensed under Apache 2.0. Full license text is available in [LICENSE](https://github.com/google/post-install-check/blob/master/LICENSE).
 
+*This is not an officially supported Google product.*
 *Made with ❤️ by the Google Node.js team*
