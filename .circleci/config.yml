@@ -8,6 +8,7 @@ unit_tests: &unit_tests
     - checkout
     - run: npm install
     - run: npm test
+    - run: npm run codecov
 
 version: 2.0
 workflows:

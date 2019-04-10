@@ -21,17 +21,23 @@
     "fix": "gts fix",
     "prepare": "npm run compile",
     "pretest": "npm run compile",
-    "posttest": "npm run check"
+    "posttest": "npm run check",
+    "test": "nyc mocha build/test",
+    "codecov": "nyc report --reporter=json && codecov -f coverage/*.json"
   },
   "devDependencies": {
     "@types/glob": "^7.1.1",
-    "@types/mocha": "^5.2.0",
+    "@types/mocha": "^5.2.6",
     "@types/node": "^11.12.3",
     "@types/once": "^1.4.0",
     "@types/pify": "^3.0.1",
     "@types/rimraf": "^2.0.2",
     "@types/tmp": "0.1.0",
+    "codecov": "^3.3.0",
     "gts": "^0.9.0",
+    "mocha": "^6.1.2",
+    "nyc": "^13.3.0",
+    "source-map-support": "^0.5.12",
     "typescript": "~3.4.0"
   },
   "dependencies": {
