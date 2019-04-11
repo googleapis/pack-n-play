@@ -18,7 +18,10 @@ import * as assert from 'assert';
 import {SpawnOptions} from 'child_process';
 import * as path from 'path';
 
+import {packNTest} from './pack-n-test';
 import {globP, mkdirP, rimrafP, spawnP, tmpDirP, writeFileP} from './utils';
+
+export {packNTest};
 
 const INDEX_TS = 'index.ts';
 const INDEX_JS = 'index.js';
