@@ -139,8 +139,7 @@ export async function packNTestInternal(
 
     await run(
         'npm',
-        ['install', '--prefer-offline', '--save-dev'].concat(
-            devDependencies),
+        ['install', '--prefer-offline', '--save-dev'].concat(devDependencies),
         {cwd: installDir});
 
     // Poupulate test code.
@@ -151,7 +150,8 @@ export async function packNTestInternal(
     // If TypeScript, compile it.
     if (!isJSCodeSample(sample)) {
       // TODO: maybe make it flexible for users to pass in typescript config.
-      await run('node_modules/.bin/tsc', ['--strict', 'index.ts'], {cwd: installDir});
+      await run(
+          'node_modules/.bin/tsc', ['--strict', 'index.ts'], {cwd: installDir});
     }
   }
 
