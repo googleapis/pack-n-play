@@ -18,7 +18,7 @@ import {unlinkSync} from 'fs';
 
 import * as check from '../src';
 
-describe('post-install-check', () => {
+describe('pack-n-play', () => {
   it('should run a basic example', () => {
     const tsCode = `
       import * as express from 'express';
