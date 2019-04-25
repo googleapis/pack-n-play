@@ -78,12 +78,13 @@ describe(__filename, () => {
         },
       };
 
-      const promise = packNTestForTesting({
-        sample: {description: 'an example test', ts: `42;`},
-        injectables: DEPS
-      });
+      assert.rejects(async () => {
+        await packNTestForTesting({
+          sample: {description: 'an example test', ts: `42;`},
+          injectables: DEPS
+        });
+      }, new RegExp(REJECTION_MESSAGE));
 
-      assert.rejects(promise, new RegExp(REJECTION_MESSAGE));
       assert.strictEqual(
           called, false, 'execution should stop if tempDir cannot be created');
     });

@@ -80,17 +80,17 @@ export async function pack(
   return packageTarball;
 }
 
-export function packNTest(options: TestOptions) {
-  return packNTestInternal(options, DEFAULT_INJECTABLES);
+export async function packNTest(options: TestOptions) {
+  await packNTestInternal(options, DEFAULT_INJECTABLES);
 }
 
 export interface TestOptionsForTesting extends TestOptions {
   injectables: Partial<Injectables>;
 }
 
-export function packNTestForTesting(options: TestOptionsForTesting) {
+export async function packNTestForTesting(options: TestOptionsForTesting) {
   const injectables = {...DEFAULT_INJECTABLES, ...options.injectables};
-  return packNTestInternal(options, injectables);
+  await packNTestInternal(options, injectables);
 }
 
 export async function packNTestInternal(
