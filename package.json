@@ -36,7 +36,7 @@
     "@types/tar": "^4.0.0",
     "@types/tmp": "0.1.0",
     "codecov": "^3.3.0",
-    "gts": "^0.9.0",
+    "gts": "^1.0.0",
     "inline-fixtures": "^1.0.0",
     "mocha": "^6.1.4",
     "nyc": "^14.0.0",

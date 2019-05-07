@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-import {SpawnOptions} from 'child_process';
+import { SpawnOptions } from 'child_process';
 import * as packlist from 'npm-packlist';
 import * as path from 'path';
 import * as tar from 'tar';
 
-import {mkdirP, rimrafP, spawnP, tmpDirP, writeFileP} from './utils';
+import { mkdirP, rimrafP, spawnP, tmpDirP, writeFileP } from './utils';
 
 export interface BaseCodeSample {
   description: string;
@@ -35,10 +35,10 @@ export interface JSCodeSample extends BaseCodeSample {
   js: string;
 }
 
-export type CodeSample = JSCodeSample|TSCodeSample;
+export type CodeSample = JSCodeSample | TSCodeSample;
 
 function isJSCodeSample(sample: CodeSample): sample is JSCodeSample {
-  return !!((sample as JSCodeSample).js);
+  return !!(sample as JSCodeSample).js;
 }
 
 export interface Injectables {
@@ -54,7 +54,7 @@ const DEFAULT_INJECTABLES: Injectables = {
   mkdir: mkdirP,
   tmpDir: tmpDirP,
   rimraf: rimrafP,
-  writeFile: writeFileP
+  writeFile: writeFileP,
 };
 
 interface TestOptions {
@@ -63,20 +63,23 @@ interface TestOptions {
 }
 
 export async function pack(
-    packageDir: string, targetDir: string): Promise<string> {
+  packageDir: string,
+  targetDir: string
+): Promise<string> {
   const packageTarball = path.join(targetDir, 'module-under-test.tgz');
-  const files = await packlist({path: packageDir});
+  const files = await packlist({ path: packageDir });
   await tar.create(
-      {
-        prefix: 'package/',
-        cwd: packageDir,
-        file: packageTarball,
-        gzip: true
-        // @types/tar is missing type for prefix in CreateOptions.
-        // TODO: submit fix upstream.
-        // tslint:disable-next-line:no-any
-      } as any,
-      files);
+    {
+      prefix: 'package/',
+      cwd: packageDir,
+      file: packageTarball,
+      gzip: true,
+      // @types/tar is missing type for prefix in CreateOptions.
+      // TODO: submit fix upstream.
+      // tslint:disable-next-line:no-any
+    } as any,
+    files
+  );
   return packageTarball;
 }
 
@@ -89,12 +92,14 @@ export interface TestOptionsForTesting extends TestOptions {
 }
 
 export async function packNTestForTesting(options: TestOptionsForTesting) {
-  const injectables = {...DEFAULT_INJECTABLES, ...options.injectables};
+  const injectables = { ...DEFAULT_INJECTABLES, ...options.injectables };
   await packNTestInternal(options, injectables);
 }
 
 export async function packNTestInternal(
-    options: TestOptions, injectables: Injectables) {
+  options: TestOptions,
+  injectables: Injectables
+) {
   const moduleUnderTest = options.packageDir || process.cwd();
   let output = '';
   const installDir = await injectables.tmpDir();
@@ -121,10 +126,10 @@ export async function packNTestInternal(
 
   async function prepareTarget(tarball: string, sample: CodeSample) {
     // Generate a package.json.
-    await run('npm', ['init', '-y'], {cwd: installDir});
+    await run('npm', ['init', '-y'], { cwd: installDir });
 
     const dependencies = sample.dependencies || [];
-    const devDependencies = (sample.devDependencies || []);
+    const devDependencies = sample.devDependencies || [];
 
     if (!isJSCodeSample(sample)) {
       devDependencies.push('typescript');
@@ -133,14 +138,16 @@ export async function packNTestInternal(
     // Add dependencies, including tarball, to package.json.
     // TODO: modify package.json rather than spawning npm.
     await run(
-        'npm',
-        ['install', '--prefer-offline', '--save', tarball].concat(dependencies),
-        {cwd: installDir});
+      'npm',
+      ['install', '--prefer-offline', '--save', tarball].concat(dependencies),
+      { cwd: installDir }
+    );
 
     await run(
-        'npm',
-        ['install', '--prefer-offline', '--save-dev'].concat(devDependencies),
-        {cwd: installDir});
+      'npm',
+      ['install', '--prefer-offline', '--save-dev'].concat(devDependencies),
+      { cwd: installDir }
+    );
 
     // Poupulate test code.
     const filename = isJSCodeSample(sample) ? 'index.js' : 'index.ts';
@@ -150,12 +157,13 @@ export async function packNTestInternal(
     // If TypeScript, compile it.
     if (!isJSCodeSample(sample)) {
       // TODO: maybe make it flexible for users to pass in typescript config.
-      await run(
-          'node_modules/.bin/tsc', ['--strict', 'index.ts'], {cwd: installDir});
+      await run('node_modules/.bin/tsc', ['--strict', 'index.ts'], {
+        cwd: installDir,
+      });
     }
   }
 
   async function runSample(installDir: string, sample: CodeSample) {
-    await run('node', ['index.js'], {cwd: installDir});
+    await run('node', ['index.js'], { cwd: installDir });
   }
 }

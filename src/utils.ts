@@ -14,8 +14,14 @@
  * limitations under the License.
  */
 
-import {ChildProcess, fork, ForkOptions, spawn, SpawnOptions} from 'child_process';
-import {mkdir, readFile, stat, Stats, writeFile} from 'fs';
+import {
+  ChildProcess,
+  fork,
+  ForkOptions,
+  spawn,
+  SpawnOptions,
+} from 'child_process';
+import { mkdir, readFile, stat, Stats, writeFile } from 'fs';
 import * as glob from 'glob';
 import * as once from 'once';
 import * as pify from 'pify';
@@ -25,49 +31,65 @@ import * as tmp from 'tmp';
 export const BUILD_DIRECTORY = 'build';
 
 export const globP: (pattern: string) => Promise<string[]> = pify(glob);
-export const readFileP: (path: string, encoding?: string) =>
-    Promise<Buffer|string> = pify(readFile);
-export const writeFileP: (path: string, data: string, encoding?: string) =>
-    Promise<void> = pify(writeFile);
+export const readFileP: (
+  path: string,
+  encoding?: string
+) => Promise<Buffer | string> = pify(readFile);
+export const writeFileP: (
+  path: string,
+  data: string,
+  encoding?: string
+) => Promise<void> = pify(writeFile);
 export const tmpDirP: () => Promise<string> = pify(tmp.dir);
 export const rimrafP: (f: string) => Promise<void> = pify(rimraf);
-export const mkdirP: (path: string, mode?: number) => Promise<void> =
-    pify(mkdir);
+export const mkdirP: (path: string, mode?: number) => Promise<void> = pify(
+  mkdir
+);
 
 function promisifyChildProcess(
-    childProcess: ChildProcess, log?: (text: string) => void): Promise<void> {
+  childProcess: ChildProcess,
+  log?: (text: string) => void
+): Promise<void> {
   return new Promise((resolve, reject) => {
-    const exit = (err?: Error) => once(() => err ? reject(err) : resolve())();
+    const exit = (err?: Error) => once(() => (err ? reject(err) : resolve()))();
     const resLog = log ? log : (text: string) => {};
-    childProcess.stdout!.on('data', (txt) => {
+    childProcess.stdout!.on('data', txt => {
       resLog(txt.toString());
     });
-    childProcess.stderr!.on('data', (txt) => {
+    childProcess.stderr!.on('data', txt => {
       resLog(txt.toString());
     });
     childProcess.on('error', exit);
-    childProcess.on('close', (code) => {
+    childProcess.on('close', code => {
       if (code === 0) {
         exit();
       } else {
         exit(
-            new Error(`Process ${childProcess.pid} exited with code ${code}.`));
+          new Error(`Process ${childProcess.pid} exited with code ${code}.`)
+        );
       }
     });
   });
 }
 
 export async function spawnP(
-    command: string, args?: string[], options?: SpawnOptions,
-    log?: (text: string) => void): Promise<void> {
-  const stringifiedCommand =
-      `\`${command}${args ? (' ' + args.join(' ')) : ''}\``;
+  command: string,
+  args?: string[],
+  options?: SpawnOptions,
+  log?: (text: string) => void
+): Promise<void> {
+  const stringifiedCommand = `\`${command}${
+    args ? ' ' + args.join(' ') : ''
+  }\``;
   if (log) {
     log(`> Running: ${stringifiedCommand}`);
   }
   await promisifyChildProcess(
-      spawn(
-          command, args || [],
-          Object.assign({stdio: 'pipe', shell: true}, options)),
-      log);
+    spawn(
+      command,
+      args || [],
+      Object.assign({ stdio: 'pipe', shell: true }, options)
+    ),
+    log
+  );
 }
