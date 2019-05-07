@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {unlinkSync} from 'fs';
+import { unlinkSync } from 'fs';
 
 import * as check from '../src';
 
@@ -30,20 +30,24 @@ describe('pack-n-play', () => {
       const app = express();
 `;
 
-    const TS_SAMPLES: check.CodeSample[] = [{
-      code: tsCode,
-      description: 'can be used with express',
-      dependencies: ['express'],
-      devDependencies: ['@types/express']
-    }];
+    const TS_SAMPLES: check.CodeSample[] = [
+      {
+        code: tsCode,
+        description: 'can be used with express',
+        dependencies: ['express'],
+        devDependencies: ['@types/express'],
+      },
+    ];
 
-    const JS_SAMPLES: check.CodeSample[] = [{
-      code: jsCode,
-      description: 'can be used with express',
-      dependencies: ['express'],
-      devDependencies: []
-    }];
+    const JS_SAMPLES: check.CodeSample[] = [
+      {
+        code: jsCode,
+        description: 'can be used with express',
+        dependencies: ['express'],
+        devDependencies: [],
+      },
+    ];
 
-    check.testInstallation(TS_SAMPLES, JS_SAMPLES, {timeout: 2 * 60 * 1000});
+    check.testInstallation(TS_SAMPLES, JS_SAMPLES, { timeout: 2 * 60 * 1000 });
   });
 });

@@ -15,9 +15,9 @@
  */
 
 import * as assert from 'assert';
-import {withFixtures} from 'inline-fixtures';
+import { withFixtures } from 'inline-fixtures';
 
-import {packNTest, packNTestForTesting} from '../src/pack-n-test';
+import { packNTest, packNTestForTesting } from '../src/pack-n-test';
 
 const DEFAULT_TIMEOUT = 60 * 1000;
 
@@ -30,7 +30,7 @@ const FAKE_DEPS = {
   mkdir: resolve,
   rimraf: resolve,
   tmpDir: resolve,
-  writeFile: resolve
+  writeFile: resolve,
 };
 
 describe(__filename, () => {
@@ -45,17 +45,16 @@ describe(__filename, () => {
         'package.json': JSON.stringify({
           name: 'correct',
           version: '1.0.0',
-          scripts: {compile: 'tsc -p .', prepare: 'npm run compile'},
-          devDependencies: {'gts': '0.9.x', 'typescript': '3.x'}
+          scripts: { compile: 'tsc -p .', prepare: 'npm run compile' },
+          devDependencies: { gts: '0.9.x', typescript: '3.x' },
         }),
       };
-      const CONSUMER =
-          `import {Foo} from 'correct'; const foo: Foo = {bar: 'a string'};`;
+      const CONSUMER = `import {Foo} from 'correct'; const foo: Foo = {bar: 'a string'};`;
 
-      await withFixtures(MODULE, async (fixturesDir) => {
+      await withFixtures(MODULE, async fixturesDir => {
         await packNTest({
           packageDir: fixturesDir,
-          sample: {ts: CONSUMER, description: 'a test that should pass'}
+          sample: { ts: CONSUMER, description: 'a test that should pass' },
         });
       });
     }).timeout(DEFAULT_TIMEOUT);
@@ -80,13 +79,16 @@ describe(__filename, () => {
 
       assert.rejects(async () => {
         await packNTestForTesting({
-          sample: {description: 'an example test', ts: `42;`},
-          injectables: DEPS
+          sample: { description: 'an example test', ts: `42;` },
+          injectables: DEPS,
         });
       }, new RegExp(REJECTION_MESSAGE));
 
       assert.strictEqual(
-          called, false, 'execution should stop if tempDir cannot be created');
+        called,
+        false,
+        'execution should stop if tempDir cannot be created'
+      );
     });
 
     it('should catch a problem with leaking dependent types', async () => {
@@ -124,12 +126,14 @@ exports.makeHttpRequestData = makeHttpRequestData;`,
         'package.json': JSON.stringify({
           name: 'leaky',
           version: '1.0.0',
-          dependencies: {'express': '*'},
-          devDependencies:
-              {'@types/express': '^4.16.1', '@types/node': '^11.11.4'}
+          dependencies: { express: '*' },
+          devDependencies: {
+            '@types/express': '^4.16.1',
+            '@types/node': '^11.11.4',
+          },
         }),
       };
-      await withFixtures(FIXTURES, async (fixturesDir) => {
+      await withFixtures(FIXTURES, async fixturesDir => {
         const options = {
           packageDir: fixturesDir,
           sample: {
@@ -137,18 +141,19 @@ exports.makeHttpRequestData = makeHttpRequestData;`,
             ts: `
 import {makeHttpRequestData} from 'leaky';
 const result = makeHttpRequestData({}, {}, 5);
-console.log(result);`
-          }
+console.log(result);`,
+          },
         };
 
         try {
-          await packNTest(options);  // should throw.
+          await packNTest(options); // should throw.
           assert.fail();
         } catch (err) {
           assert(err.output, 'error should have an output property');
           assert(
-              err.output.match(/TS7016/),
-              'Express types should have leaked from leaky');
+            err.output.match(/TS7016/),
+            'Express types should have leaked from leaky'
+          );
         }
       });
     });
