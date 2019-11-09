@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "glob": "^7.1.2",
-    "npm-packlist": "^1.4.1",
+    "npm-packlist": "^2.0.0",
     "once": "^1.4.0",
     "pify": "^4.0.1",
     "rimraf": "^3.0.0",
