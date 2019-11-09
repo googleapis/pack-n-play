@@ -74,7 +74,7 @@ jobs:
     steps:
       - checkout
       - run: npm ci
-      - run: npm run check
+      - run: npm run lint
   publish_npm:
     docker:
       - image: node:10
