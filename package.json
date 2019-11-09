@@ -15,13 +15,12 @@
     "Kelvin Jin <kelvinjin@google.com>"
   ],
   "scripts": {
-    "check": "gts check",
+    "lint": "gts check",
     "clean": "gts clean",
     "compile": "tsc -p .",
     "fix": "gts fix",
     "prepare": "npm run compile",
     "pretest": "npm run compile",
-    "posttest": "npm run check",
     "test": "c8 mocha build/test",
     "codecov": "c8 report --reporter=json && codecov -f coverage/*.json"
   },
