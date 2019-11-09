@@ -14,17 +14,13 @@
  * limitations under the License.
  */
 
-import {
-  ChildProcess,
-  spawn,
-  SpawnOptions,
-} from 'child_process';
+import { ChildProcess, spawn, SpawnOptions } from 'child_process';
 import { mkdir, readFile, writeFile } from 'fs';
 import * as glob from 'glob';
 import * as once from 'once';
 import * as rimraf from 'rimraf';
 import * as tmp from 'tmp';
-import {promisify} from 'util';
+import { promisify } from 'util';
 
 export const BUILD_DIRECTORY = 'build';
 
