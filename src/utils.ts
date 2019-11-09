@@ -14,35 +14,29 @@
  * limitations under the License.
  */
 
-import {
-  ChildProcess,
-  fork,
-  ForkOptions,
-  spawn,
-  SpawnOptions,
-} from 'child_process';
-import { mkdir, readFile, stat, Stats, writeFile } from 'fs';
+import { ChildProcess, spawn, SpawnOptions } from 'child_process';
+import { mkdir, readFile, writeFile } from 'fs';
 import * as glob from 'glob';
 import * as once from 'once';
-import * as pify from 'pify';
 import * as rimraf from 'rimraf';
 import * as tmp from 'tmp';
+import { promisify } from 'util';
 
 export const BUILD_DIRECTORY = 'build';
 
-export const globP: (pattern: string) => Promise<string[]> = pify(glob);
+export const globP: (pattern: string) => Promise<string[]> = promisify(glob);
 export const readFileP: (
   path: string,
   encoding?: string
-) => Promise<Buffer | string> = pify(readFile);
+) => Promise<Buffer | string> = promisify(readFile);
 export const writeFileP: (
   path: string,
   data: string,
   encoding?: string
-) => Promise<void> = pify(writeFile);
-export const tmpDirP: () => Promise<string> = pify(tmp.dir);
-export const rimrafP: (f: string) => Promise<void> = pify(rimraf);
-export const mkdirP: (path: string, mode?: number) => Promise<void> = pify(
+) => Promise<void> = promisify(writeFile);
+export const tmpDirP = promisify(tmp.dir) as () => Promise<string>;
+export const rimrafP: (f: string) => Promise<void> = promisify(rimraf);
+export const mkdirP: (path: string, mode?: number) => Promise<void> = promisify(
   mkdir
 );
 

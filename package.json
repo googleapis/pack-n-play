@@ -30,7 +30,6 @@
     "@types/node": "^11.12.3",
     "@types/npm-packlist": "^1.1.1",
     "@types/once": "^1.4.0",
-    "@types/pify": "^3.0.1",
     "@types/rimraf": "^2.0.2",
     "@types/tar": "^4.0.0",
     "@types/tmp": "0.1.0",
@@ -46,7 +45,6 @@
     "glob": "^7.1.2",
     "npm-packlist": "^2.0.0",
     "once": "^1.4.0",
-    "pify": "^4.0.1",
     "rimraf": "^3.0.0",
     "tar": "^5.0.0",
     "tmp": "0.1.0"
