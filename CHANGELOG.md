@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.0-2](https://www.github.com/google/pack-n-play/compare/v1.0.0-0...v1.0.0-2) (2019-11-10)
+
+
+### Bug Fixes
+
+* create release ([#53](https://www.github.com/google/pack-n-play/issues/53)) ([3cfce94](https://www.github.com/google/pack-n-play/commit/3cfce9430e551e152a32ab25ccff313356b31a49))
+
 ## 1.0.0-0 (2019-11-09)
 
 
