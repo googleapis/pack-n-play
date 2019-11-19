@@ -8,6 +8,7 @@
   ],
   "main": "build/src/index.js",
   "scripts": {
+    "prepare": "npm run compile",
     "precompile": "npm install",
     "compile": "tsc -p ."
   },
