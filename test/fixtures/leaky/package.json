@@ -9,7 +9,7 @@
   "main": "build/src/index.js",
   "scripts": {
     "compile": "tsc -p .",
-    "prepare": "npm run compile"
+    "precompile": "npm install"
   },
   "keywords": [],
   "author": "Google LLC",

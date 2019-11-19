@@ -8,8 +8,8 @@
   ],
   "main": "build/src/index.js",
   "scripts": {
-    "compile": "tsc -p .",
-    "prepare": "npm run compile"
+    "precompile": "npm install",
+    "compile": "tsc -p ."
   },
   "keywords": [],
   "author": "Google LLC",
