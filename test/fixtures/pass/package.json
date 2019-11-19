@@ -1,0 +1,22 @@
+{
+  "name": "pass",
+  "private": true,
+  "version": "0.0.1",
+  "description": "A successfully packaged module",
+  "files": [
+    "build/src"
+  ],
+  "main": "build/src/index.js",
+  "scripts": {
+    "compile": "tsc -p .",
+    "prepare": "npm run compile"
+  },
+  "keywords": [],
+  "author": "Google LLC",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "gts": "^1.1.0",
+    "typescript": "^3.7.0",
+    "@types/node": "^10.0.3"
+  }
+}
