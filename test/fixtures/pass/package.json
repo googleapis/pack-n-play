@@ -9,7 +9,9 @@
   "main": "build/src/index.js",
   "scripts": {
     "prepare": "npm run compile",
-    "compile": "tsc -p ."
+    "compile": "tsc -p .",
+    "test": "mocha build/test",
+    "pretest": "npm run compile"
   },
   "keywords": [],
   "author": "Google LLC",
