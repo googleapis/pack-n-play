@@ -9,15 +9,17 @@
   "main": "build/src/index.js",
   "scripts": {
     "prepare": "npm run compile",
-    "precompile": "npm install",
     "compile": "tsc -p ."
   },
   "keywords": [],
   "author": "Google LLC",
   "license": "Apache-2.0",
   "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^10.0.3",
     "gts": "^1.1.0",
-    "typescript": "^3.7.0",
-    "@types/node": "^10.0.3"
+    "mocha": "^6.2.2",
+    "pack-n-play": "^1.0.0-2",
+    "typescript": "^3.7.0"
   }
 }

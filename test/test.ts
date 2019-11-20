@@ -18,8 +18,26 @@ import * as path from 'path';
 import assertRejects = require('assert-rejects');
 import { packNTest } from '../src';
 import { ExecaError } from 'execa';
+import * as fs from 'fs';
+import execa = require('execa');
 
 describe('pack-n-play', () => {
+
+  before(async () => {
+    const fixturesPath = path.resolve('./test/fixtures');
+    const dirs = fs.readdirSync(fixturesPath).map(i => path.join(fixturesPath, i)).filter(i => fs.statSync(i).isDirectory());
+    for (const dir of dirs) {
+      const opts: execa.Options = {
+        stdio: 'inherit',
+        cwd: dir,
+      };
+      await execa('npm', ['install'], opts);
+      await execa('npm', ['link', '../../../'], opts);
+      await execa('npm', ['test'], opts);
+    }
+  });
+
+
   it('should pass a correct test', async () => {
     const passFixturePath = path.resolve('./test/fixtures/pass');
     await packNTest({
