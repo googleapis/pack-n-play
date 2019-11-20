@@ -13,17 +13,16 @@
 // limitations under the License.
 
 import * as path from 'path';
-import assertRejects = require('assert-rejects');
-import { packNTest } from '../src';
-import { ExecaError } from 'execa';
 import * as fs from 'fs';
 import execa = require('execa');
 
 describe('pack-n-play', () => {
-
-  before(async () => {
+  it('should run tests', async () => {
     const fixturesPath = path.resolve('./test/fixtures');
-    const dirs = fs.readdirSync(fixturesPath).map(i => path.join(fixturesPath, i)).filter(i => fs.statSync(i).isDirectory());
+    const dirs = fs
+      .readdirSync(fixturesPath)
+      .map(i => path.join(fixturesPath, i))
+      .filter(i => fs.statSync(i).isDirectory());
     for (const dir of dirs) {
       const opts: execa.Options = {
         stdio: 'inherit',
@@ -33,39 +32,5 @@ describe('pack-n-play', () => {
       await execa('npm', ['link', '../../../'], opts);
       await execa('npm', ['test'], opts);
     }
-  });
-
-
-  it('should pass a correct test', async () => {
-    const passFixturePath = path.resolve('./test/fixtures/pass');
-    await packNTest({
-      packageDir: passFixturePath,
-      sample: {
-        description: 'basic passing sample',
-        ts: `
-          import {doStuff} from 'pass';
-          doStuff().then(console.log);
-        `,
-      },
-    });
-  });
-
-  it('should catch a problem with leaking dependent types', async () => {
-    const passFixturePath = path.resolve('./test/fixtures/leaky');
-    await assertRejects(
-      packNTest({
-        packageDir: passFixturePath,
-        sample: {
-          description: 'sample that wont have proper types',
-          ts: `
-            import {getLong} from 'leaky';
-            getLong().then(console.log);
-          `,
-        },
-      }),
-      (e: ExecaError) => {
-        return /Cannot find module 'long'/.test(e.stdout);
-      }
-    );
   });
 });
