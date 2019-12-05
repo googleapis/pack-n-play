@@ -1,0 +1,27 @@
+{
+  "name": "pass",
+  "private": true,
+  "version": "0.0.1",
+  "description": "A successfully packaged module",
+  "files": [
+    "build/src"
+  ],
+  "main": "build/src/index.js",
+  "scripts": {
+    "prepare": "npm run compile",
+    "compile": "tsc -p .",
+    "test": "mocha build/test",
+    "pretest": "npm run compile"
+  },
+  "keywords": [],
+  "author": "Google LLC",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^10.0.3",
+    "gts": "^1.1.0",
+    "mocha": "^6.2.2",
+    "pack-n-play": "^1.0.0-2",
+    "typescript": "^3.7.0"
+  }
+}

@@ -4,6 +4,8 @@ release_tags: &release_tags
     only: /^v\d+(\.\d+){2}(-.*)?$/
 
 unit_tests: &unit_tests
+  environment:
+    NPM_CONFIG_PREFIX: /home/node/.npm-global
   steps:
     - checkout
     - run: npm ci
@@ -18,9 +20,9 @@ workflows:
           filters: *release_tags
       - node10:
           filters: *release_tags
-      - node11:
-          filters: *release_tags
       - node12:
+          filters: *release_tags
+      - node13:
           filters: *release_tags
       - lint:
           filters: *release_tags
@@ -30,8 +32,8 @@ workflows:
           requires:
             - node8
             - node10
-            - node11
             - node12
+            - node13
           filters:
             branches:
               ignore: /.*/
@@ -48,20 +50,22 @@ jobs:
       - image: node:10
         user: node
     <<: *unit_tests
-  node11:
-    docker:
-      - image: node:11
-        user: node
-    <<: *unit_tests
   node12:
     docker:
       - image: node:12
+        user: node
+    <<: *unit_tests
+  node13:
+    docker:
+      - image: node:13
         user: node
     <<: *unit_tests
   codecov:
     docker:
       - image: node:12
         user: node
+    environment:
+      NPM_CONFIG_PREFIX: /home/node/.npm-global
     steps:
       - checkout
       - run: npm ci
@@ -77,7 +81,7 @@ jobs:
       - run: npm run lint
   publish_npm:
     docker:
-      - image: node:10
+      - image: node:12
         user: node
     steps:
       - checkout

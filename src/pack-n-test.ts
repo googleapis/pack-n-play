@@ -14,12 +14,18 @@
  * limitations under the License.
  */
 
-import { SpawnOptions } from 'child_process';
+import * as execa from 'execa';
 import * as packlist from 'npm-packlist';
 import * as path from 'path';
 import * as tar from 'tar';
+import { promisify } from 'util';
+import { writeFile } from 'fs';
+import * as tmp from 'tmp';
+import * as rimraf from 'rimraf';
 
-import { mkdirP, rimrafP, spawnP, tmpDirP, writeFileP } from './utils';
+const writeFileP = promisify(writeFile);
+const tmpDirP = promisify(tmp.dir) as () => Promise<string>;
+const rimrafP = promisify(rimraf);
 
 export interface BaseCodeSample {
   description: string;
@@ -40,22 +46,6 @@ export type CodeSample = JSCodeSample | TSCodeSample;
 function isJSCodeSample(sample: CodeSample): sample is JSCodeSample {
   return !!(sample as JSCodeSample).js;
 }
-
-export interface Injectables {
-  spawn: typeof spawnP;
-  mkdir: typeof mkdirP;
-  rimraf: typeof rimrafP;
-  tmpDir: typeof tmpDirP;
-  writeFile: typeof writeFileP;
-}
-
-const DEFAULT_INJECTABLES: Injectables = {
-  spawn: spawnP,
-  mkdir: mkdirP,
-  tmpDir: tmpDirP,
-  rimraf: rimrafP,
-  writeFile: writeFileP,
-};
 
 interface TestOptions {
   sample: CodeSample;
@@ -84,49 +74,24 @@ export async function pack(
 }
 
 export async function packNTest(options: TestOptions) {
-  await packNTestInternal(options, DEFAULT_INJECTABLES);
-}
-
-export interface TestOptionsForTesting extends TestOptions {
-  injectables: Partial<Injectables>;
-}
-
-export async function packNTestForTesting(options: TestOptionsForTesting) {
-  const injectables = { ...DEFAULT_INJECTABLES, ...options.injectables };
-  await packNTestInternal(options, injectables);
-}
-
-export async function packNTestInternal(
-  options: TestOptions,
-  injectables: Injectables
-) {
   const moduleUnderTest = options.packageDir || process.cwd();
-  let output = '';
-  const installDir = await injectables.tmpDir();
+  const installDir = await tmpDirP();
 
   try {
     const tarball = await pack(moduleUnderTest, installDir);
     await prepareTarget(tarball, options.sample);
-    await runSample(installDir, options.sample);
+    await execa('node', ['index.js'], { cwd: installDir });
   } catch (err) {
-    err.output = output;
+    console.error(err);
     throw err;
   } finally {
-    injectables.rimraf(installDir);
+    rimrafP(installDir);
   }
   return;
 
-  function log(message: string) {
-    output += message;
-  }
-
-  async function run(cmd: string, args: string[], options?: SpawnOptions) {
-    return injectables.spawn(cmd, args, options, log);
-  }
-
   async function prepareTarget(tarball: string, sample: CodeSample) {
     // Generate a package.json.
-    await run('npm', ['init', '-y'], { cwd: installDir });
+    await execa('npm', ['init', '-y'], { cwd: installDir });
 
     const dependencies = sample.dependencies || [];
     const devDependencies = sample.devDependencies || [];
@@ -137,13 +102,13 @@ export async function packNTestInternal(
 
     // Add dependencies, including tarball, to package.json.
     // TODO: modify package.json rather than spawning npm.
-    await run(
+    await execa(
       'npm',
       ['install', '--prefer-offline', '--save', tarball].concat(dependencies),
       { cwd: installDir }
     );
 
-    await run(
+    await execa(
       'npm',
       ['install', '--prefer-offline', '--save-dev'].concat(devDependencies),
       { cwd: installDir }
@@ -152,18 +117,14 @@ export async function packNTestInternal(
     // Poupulate test code.
     const filename = isJSCodeSample(sample) ? 'index.js' : 'index.ts';
     const code = isJSCodeSample(sample) ? sample.js : sample.ts;
-    await injectables.writeFile(path.join(installDir, filename), code, 'utf-8');
+    await writeFileP(path.join(installDir, filename), code, 'utf-8');
 
     // If TypeScript, compile it.
     if (!isJSCodeSample(sample)) {
       // TODO: maybe make it flexible for users to pass in typescript config.
-      await run('node_modules/.bin/tsc', ['--strict', 'index.ts'], {
+      await execa('node_modules/.bin/tsc', ['--strict', 'index.ts'], {
         cwd: installDir,
       });
     }
-  }
-
-  async function runSample(installDir: string, sample: CodeSample) {
-    await run('node', ['index.js'], { cwd: installDir });
   }
 }
