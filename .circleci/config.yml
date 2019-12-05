@@ -1,9 +1,14 @@
 ---
+environment:
+  NPM_CONFIG_PREFIX: /home/node/.npm-global
+
 release_tags: &release_tags
   tags:
     only: /^v\d+(\.\d+){2}(-.*)?$/
 
 unit_tests: &unit_tests
+  environment:
+    NPM_CONFIG_PREFIX: /home/node/.npm-global
   steps:
     - checkout
     - run: npm ci
