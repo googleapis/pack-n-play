@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://www.github.com/google/pack-n-play/compare/v1.0.0-2...v1.0.0) (2019-12-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* simplify the module, tests, and remove old interface (#57)
+
+### Code Refactoring
+
+* simplify the module, tests, and remove old interface ([#57](https://www.github.com/google/pack-n-play/issues/57)) ([f692000](https://www.github.com/google/pack-n-play/commit/f692000e2763caa39d9f884da42bcf876b18fd81))
+
 ## [1.0.0-2](https://www.github.com/google/pack-n-play/compare/v1.0.0-0...v1.0.0-2) (2019-11-10)
 
 
