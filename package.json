@@ -41,7 +41,7 @@
     "typescript": "~3.7.0"
   },
   "dependencies": {
-    "execa": "^3.3.0",
+    "execa": "^4.0.0",
     "npm-packlist": "^2.0.0",
     "once": "^1.4.0",
     "rimraf": "^3.0.0",
