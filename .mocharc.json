@@ -1,0 +1,7 @@
+{
+  "require": [
+    "source-map-support/register"
+  ],
+  "throw-deprecation": true,
+  "timeout": 200000
+}
