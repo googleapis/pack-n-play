@@ -13,11 +13,11 @@
 // limitations under the License.
 
 import {packNTest} from 'pack-n-play';
-import assertRejects = require('assert-rejects');
+import * as assert from 'assert';
 
 describe('leaky tests', () => {
   it('should fail packing n testing', async () => {
-    await assertRejects(
+    await assert.rejects(
       packNTest({
         sample: {
           description: 'a bad import',

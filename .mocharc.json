@@ -1,7 +1,5 @@
 {
-  "require": [
-    "source-map-support/register"
-  ],
+  "enable-source-maps": true,
   "throw-deprecation": true,
   "timeout": 200000
 }
