@@ -49,7 +49,7 @@
     "tmp": "0.1.0"
   },
   "engines": {
-    "node": ">=8.x"
+    "node": ">=10.x"
   },
   "c8": {
     "exclude": [
