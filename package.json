@@ -29,7 +29,7 @@
     "@types/node": "^11.12.3",
     "@types/npm-packlist": "^1.1.1",
     "@types/once": "^1.4.0",
-    "@types/rimraf": "^2.0.2",
+    "@types/rimraf": "^3.0.0",
     "@types/tar": "^4.0.0",
     "@types/tmp": "0.1.0",
     "c8": "^7.0.0",
