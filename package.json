@@ -17,12 +17,14 @@
   "scripts": {
     "lint": "gts check",
     "clean": "gts clean",
-    "compile": "tsc -p .",
+    "compile": "tsc",
     "fix": "gts fix",
     "prepare": "npm run compile",
     "pretest": "npm run compile",
     "test": "c8 mocha build/test",
-    "codecov": "c8 report --reporter=json && codecov -f coverage/*.json"
+    "codecov": "c8 report --reporter=json && codecov -f coverage/*.json",
+    "check": "gts check",
+    "posttest": "npm run check"
   },
   "devDependencies": {
     "@types/mocha": "^7.0.0",
@@ -34,9 +36,9 @@
     "@types/tmp": "0.1.0",
     "c8": "^7.0.0",
     "codecov": "^3.3.0",
-    "gts": "^1.0.0",
+    "gts": "^2.0.0",
     "mocha": "^7.0.0",
-    "typescript": "~3.8.0"
+    "typescript": "~3.8.3"
   },
   "dependencies": {
     "execa": "^3.3.0",

@@ -15,6 +15,7 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import execa = require('execa');
+import {describe, it} from 'mocha';
 
 describe('pack-n-play', () => {
   it('should run tests', async () => {

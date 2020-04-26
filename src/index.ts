@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import { packNTest } from './pack-n-test';
-export { packNTest };
+import {packNTest} from './pack-n-test';
+export {packNTest};
 
 export interface TestConfig {
   timeout: number;

@@ -14,6 +14,7 @@
 
 import {packNTest} from 'pack-n-play';
 import * as assert from 'assert';
+import {describe, it} from 'mocha';
 
 describe('leaky tests', () => {
   it('should fail packing n testing', async () => {
@@ -24,10 +25,10 @@ describe('leaky tests', () => {
           ts: `
             import {getLong} from 'leaky';
             getLong().then(console.log);
-          `
-        }
+          `,
+        },
       }),
-      // tslint:disable-next-line no-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (e: any) => {
         return /Cannot find module 'long'/.test(e.stdout);
       }
