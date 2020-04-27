@@ -18,8 +18,8 @@ import * as execa from 'execa';
 import * as packlist from 'npm-packlist';
 import * as path from 'path';
 import * as tar from 'tar';
-import { promisify } from 'util';
-import { writeFile } from 'fs';
+import {promisify} from 'util';
+import {writeFile} from 'fs';
 import * as tmp from 'tmp';
 import * as rimraf from 'rimraf';
 
@@ -57,17 +57,14 @@ export async function pack(
   targetDir: string
 ): Promise<string> {
   const packageTarball = path.join(targetDir, 'module-under-test.tgz');
-  const files = await packlist({ path: packageDir });
+  const files = await packlist({path: packageDir});
   await tar.create(
     {
       prefix: 'package/',
       cwd: packageDir,
       file: packageTarball,
       gzip: true,
-      // @types/tar is missing type for prefix in CreateOptions.
-      // TODO: submit fix upstream.
-      // tslint:disable-next-line:no-any
-    } as any,
+    },
     files
   );
   return packageTarball;
@@ -80,7 +77,7 @@ export async function packNTest(options: TestOptions) {
   try {
     const tarball = await pack(moduleUnderTest, installDir);
     await prepareTarget(tarball, options.sample);
-    await execa('node', ['index.js'], { cwd: installDir });
+    await execa('node', ['index.js'], {cwd: installDir});
   } catch (err) {
     console.error(err);
     throw err;
@@ -91,7 +88,7 @@ export async function packNTest(options: TestOptions) {
 
   async function prepareTarget(tarball: string, sample: CodeSample) {
     // Generate a package.json.
-    await execa('npm', ['init', '-y'], { cwd: installDir });
+    await execa('npm', ['init', '-y'], {cwd: installDir});
 
     const dependencies = sample.dependencies || [];
     const devDependencies = sample.devDependencies || [];
@@ -105,13 +102,13 @@ export async function packNTest(options: TestOptions) {
     await execa(
       'npm',
       ['install', '--prefer-offline', '--save', tarball].concat(dependencies),
-      { cwd: installDir }
+      {cwd: installDir}
     );
 
     await execa(
       'npm',
       ['install', '--prefer-offline', '--save-dev'].concat(devDependencies),
-      { cwd: installDir }
+      {cwd: installDir}
     );
 
     // Poupulate test code.

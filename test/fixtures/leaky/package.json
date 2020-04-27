@@ -3,15 +3,21 @@
   "private": true,
   "version": "0.0.1",
   "description": "A package that leaks types",
+  "engines": {
+    "node": ">=10"
+  },
   "files": [
     "build/src"
   ],
   "main": "build/src/index.js",
   "scripts": {
     "prepare": "npm run compile",
-    "compile": "tsc -p .",
+    "compile": "tsc",
     "test": "mocha build/test",
-    "pretest": "npm run compile"
+    "pretest": "npm run compile",
+    "lint": "gts check",
+    "clean": "gts clean",
+    "fix": "gts fix"
   },
   "keywords": [],
   "author": "Google LLC",
@@ -20,7 +26,7 @@
     "@types/long": "^4.0.0",
     "@types/mocha": "^5.2.7",
     "@types/node": "^10.0.3",
-    "gts": "^1.1.0",
+    "gts": "^2.0.0",
     "mocha": "^6.2.2",
     "pack-n-play": "^1.0.0-2",
     "typescript": "^3.7.0"

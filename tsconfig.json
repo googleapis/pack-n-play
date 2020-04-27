@@ -3,7 +3,6 @@
   "compilerOptions": {
     "rootDir": ".",
     "outDir": "build",
-    "esModuleInterop": false,
     "allowSyntheticDefaultImports": false
   },
   "include": [

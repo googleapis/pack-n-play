@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import {packNTest} from 'pack-n-play';
+import {describe, it} from 'mocha';
 
 describe('passing tests', () => {
   it('should pass the test', async () => {
