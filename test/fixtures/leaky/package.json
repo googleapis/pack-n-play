@@ -15,10 +15,9 @@
     "compile": "tsc",
     "test": "mocha build/test",
     "pretest": "npm run compile",
-    "check": "gts check",
+    "lint": "gts check",
     "clean": "gts clean",
-    "fix": "gts fix",
-    "posttest": "npm run check"
+    "fix": "gts fix"
   },
   "keywords": [],
   "author": "Google LLC",
