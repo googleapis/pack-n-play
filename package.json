@@ -34,7 +34,7 @@
     "c8": "^7.0.0",
     "gts": "^3.0.0",
     "mocha": "^8.0.0",
-    "typescript": "~4.1.0"
+    "typescript": "~4.3.0"
   },
   "dependencies": {
     "execa": "^5.0.0",
