@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.0.0](https://www.github.com/google/pack-n-play/compare/v1.0.0-2...v1.0.0) (2021-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* support node.js 10 and up (#67)
+* simplify the module, tests, and remove old interface (#57)
+
+### Bug Fixes
+
+* **deps:** update dependency execa to v5 ([#85](https://www.github.com/google/pack-n-play/issues/85)) ([4dff7f3](https://www.github.com/google/pack-n-play/commit/4dff7f38a0d2441dd92faf8946624424a58d4239))
+* **deps:** update dependency tar to v6 ([#64](https://www.github.com/google/pack-n-play/issues/64)) ([8a276ea](https://www.github.com/google/pack-n-play/commit/8a276ea400cb034178130eea9630962b742970db))
+* **deps:** update dependency tmp to v0.2.0 ([#71](https://www.github.com/google/pack-n-play/issues/71)) ([0842582](https://www.github.com/google/pack-n-play/commit/084258255aefc277819d111de8feba5d45fd3d48))
+* **deps:** update dependency tmp to v0.2.1 ([#75](https://www.github.com/google/pack-n-play/issues/75)) ([93f2c81](https://www.github.com/google/pack-n-play/commit/93f2c81802cb606bb390ee8ace1f21bf1abde284))
+* support node.js 10 and up ([#67](https://www.github.com/google/pack-n-play/issues/67)) ([06ed421](https://www.github.com/google/pack-n-play/commit/06ed42161018af3d520c5f1957a2bddf0da6f92f))
+
+
+### Code Refactoring
+
+* simplify the module, tests, and remove old interface ([#57](https://www.github.com/google/pack-n-play/issues/57)) ([f692000](https://www.github.com/google/pack-n-play/commit/f692000e2763caa39d9f884da42bcf876b18fd81))
+
 ## [1.0.0-2](https://www.github.com/google/pack-n-play/compare/v1.0.0-0...v1.0.0-2) (2019-11-10)
 
 
