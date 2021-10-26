@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@types/mocha": "^9.0.0",
-    "@types/node": "^14.0.0",
+    "@types/node": "^16.0.0",
     "@types/npm-packlist": "^1.1.1",
     "@types/once": "^1.4.0",
     "@types/rimraf": "^3.0.0",
