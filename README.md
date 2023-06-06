@@ -54,3 +54,45 @@ describe('typescript consumer tests', () => {
 
 });
 ```
+
+### Targetting ESM packages
+
+It's also possible to target ESM modules in order to make sure the exported definition is working as intended, e.g:
+
+```js
+import {packNTest} from 'pack-n-play';
+
+describe('packs my library and try it in a block of code', () => {
+  it('should be able to import and use my library', () =>
+    packNTest({
+      sample: {
+        description: 'an ESM package',
+        esm: `
+          import { getValue } from 'my-esm-package';
+          console.log(getValue());
+        `, // this block of code is going to be interpreted as ESM
+      },
+    }));
+});
+```
+
+### Targetting CommonJS packages
+
+It's also possible to target CommonJS-only package definitions by using a `cjs`-named code block, similar to the `esm` example above:
+
+```js
+import {packNTest} from 'pack-n-play';
+
+describe('packs my library and try it in a block of code', () => {
+  it('should be able to import and use my library', () =>
+    packNTest({
+      sample: {
+        description: 'an CommonJS package',
+        cjs: `
+          const { getValue } = require('my-esm-package');
+          console.log(getValue());
+        `, // this block of code is going to be interpreted as CommonJS
+      },
+    }));
+});
+```

@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,29 +27,57 @@ const writeFileP = promisify(writeFile);
 const tmpDirP = promisify(tmp.dir) as () => Promise<string>;
 const rimrafP = promisify(rimraf);
 
-export interface BaseCodeSample {
+// The way the user defines what type of input they're using for their code
+// block is via a property name that reflects either the file extension or
+// the type of module system used.
+// Some of these are straightforward, such as `ts` to target TypeScript.
+// Others such as `esm` and `mjs` are synonyms, meaning that the code block is
+// written assuming usage of ECMAScript Modules
+// (ref: https://nodejs.org/dist/latest-v18.x/docs/api/esm.html).
+// Using a `cjs` codeblock means that the code block targets a CommonJS env
+// (ref: https://nodejs.org/dist/latest-v18.x/docs/api/modules.html) and using
+// `js` means that the default module system of the Node.js runtime is going
+// to be used (which is currently, as of v20.x also CommonJS).
+export interface CodeSample {
+  js?: string;
+  cjs?: string;
+  esm?: string;
+  mjs?: string;
+  ts?: string;
   description: string;
   dependencies?: string[];
   devDependencies?: string[];
 }
 
-export interface TSCodeSample extends BaseCodeSample {
-  ts: string;
-}
-
-export interface JSCodeSample extends BaseCodeSample {
-  js: string;
-}
-
-export type CodeSample = JSCodeSample | TSCodeSample;
-
-function isJSCodeSample(sample: CodeSample): sample is JSCodeSample {
-  return !!(sample as JSCodeSample).js;
-}
-
 interface TestOptions {
   sample: CodeSample;
   packageDir?: string;
+}
+
+interface Sample {
+  code: string;
+  filename: string;
+}
+
+function getSample(sample: CodeSample): Sample {
+  if (!sample.js && !sample.cjs && !sample.esm && !sample.mjs && !sample.ts) {
+    throw new Error('code block not defined');
+  }
+
+  return sample.ts
+    ? {code: String(sample.ts), filename: 'index.ts'}
+    : sample.esm
+    ? {code: String(sample.esm), filename: 'index.mjs'}
+    : sample.mjs
+    ? {code: String(sample.mjs), filename: 'index.mjs'}
+    : sample.cjs
+    ? {code: String(sample.cjs), filename: 'index.cjs'}
+    : {code: String(sample.js), filename: 'index.js'};
+}
+
+function getExecFilename(sample: CodeSample): string {
+  const {filename} = getSample(sample);
+  return filename === 'index.ts' ? 'index.js' : filename;
 }
 
 export async function pack(
@@ -77,7 +105,8 @@ export async function packNTest(options: TestOptions) {
   try {
     const tarball = await pack(moduleUnderTest, installDir);
     await prepareTarget(tarball, options.sample);
-    await execa('node', ['index.js'], {cwd: installDir});
+    const filename = getExecFilename(options.sample);
+    await execa('node', [filename], {cwd: installDir});
   } catch (err) {
     console.error(err);
     throw err;
@@ -93,7 +122,7 @@ export async function packNTest(options: TestOptions) {
     const dependencies = sample.dependencies || [];
     const devDependencies = sample.devDependencies || [];
 
-    if (!isJSCodeSample(sample)) {
+    if (sample.ts) {
       devDependencies.push('typescript');
     }
 
@@ -112,14 +141,12 @@ export async function packNTest(options: TestOptions) {
     );
 
     // Poupulate test code.
-    const filename = isJSCodeSample(sample) ? 'index.js' : 'index.ts';
-    const code = isJSCodeSample(sample) ? sample.js : sample.ts;
+    const {code, filename} = getSample(sample);
     await writeFileP(path.join(installDir, filename), code, 'utf-8');
 
-    // If TypeScript, compile it.
-    if (!isJSCodeSample(sample)) {
+    if (sample.ts) {
       // TODO: maybe make it flexible for users to pass in typescript config.
-      await execa('node_modules/.bin/tsc', ['--strict', 'index.ts'], {
+      await execa('npx', ['tsc', '--strict', 'index.ts'], {
         cwd: installDir,
       });
     }
