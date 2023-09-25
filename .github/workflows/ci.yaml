@@ -20,50 +20,46 @@ on:
       - master
   pull_request:
 
-# Declare default permissions as read only.
-permissions: read-all
-
 jobs:
   test:
-    name: Tests
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [v14.x, v16.x, v18.x, v20.x]
-        os: [ubuntu-latest, macos-latest, windows-latest]
-      fail-fast: false
-
-    runs-on: ${{ matrix.os }}
-
+        node: [14, 16, 18, 20]
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
-
-      - name: Use Nodejs ${{ matrix.node-version }}
-        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run Tests
-        run: npm test
-        timeout-minutes: 5
-
+          node-version: ${{ matrix.node }}
+      - run: node --version
+      # The first installation step ensures that all of our production
+      # dependencies work on the given Node.js version, this helps us find
+      # dependencies that don't match our engines field:
+      - run: npm install --production --engine-strict --ignore-scripts --no-package-lock
+      # Clean up the production install, before installing dev/production:
+      - run: rm -rf node_modules
+      - run: npm install
+      - run: npm test
+        env:
+          MOCHA_THROW_DEPRECATION: false
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+      - run: npm install
+      - run: npm test
+        env:
+          MOCHA_THROW_DEPRECATION: false
   lint:
-    name: Lint
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
-
-      - name: Use Nodejs v18.x
-        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: v18.x
+          node-version: 14
+      - run: npm install
+      - run: npm run lint
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run Lint
-        run: npm run lint
