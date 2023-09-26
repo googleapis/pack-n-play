@@ -1,5 +1,38 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/pack-n-play/compare/v1.0.0-2...v2.0.0) (2023-09-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* move to node 14 minimum ([#143](https://github.com/googleapis/pack-n-play/issues/143))
+* support node.js 10 and up ([#67](https://github.com/googleapis/pack-n-play/issues/67))
+* simplify the module, tests, and remove old interface ([#57](https://github.com/googleapis/pack-n-play/issues/57))
+
+### Features
+
+* Move to node 14 minimum ([#143](https://github.com/googleapis/pack-n-play/issues/143)) ([8d5554a](https://github.com/googleapis/pack-n-play/commit/8d5554ac7fbb0dd7a0052b19a68add3a7afabec6))
+* Support esm code blocks ([5b487d2](https://github.com/googleapis/pack-n-play/commit/5b487d24f0baa29d0851e7f12e3523790857ec4a))
+
+
+### Bug Fixes
+
+* **deps:** Update dependency execa to v5 ([#85](https://github.com/googleapis/pack-n-play/issues/85)) ([4dff7f3](https://github.com/googleapis/pack-n-play/commit/4dff7f38a0d2441dd92faf8946624424a58d4239))
+* **deps:** Update dependency tar to v6 ([#64](https://github.com/googleapis/pack-n-play/issues/64)) ([8a276ea](https://github.com/googleapis/pack-n-play/commit/8a276ea400cb034178130eea9630962b742970db))
+* **deps:** Update dependency tmp to v0.2.0 ([#71](https://github.com/googleapis/pack-n-play/issues/71)) ([0842582](https://github.com/googleapis/pack-n-play/commit/084258255aefc277819d111de8feba5d45fd3d48))
+* **deps:** Update dependency tmp to v0.2.1 ([#75](https://github.com/googleapis/pack-n-play/issues/75)) ([93f2c81](https://github.com/googleapis/pack-n-play/commit/93f2c81802cb606bb390ee8ace1f21bf1abde284))
+* Support node.js 10 and up ([#67](https://github.com/googleapis/pack-n-play/issues/67)) ([06ed421](https://github.com/googleapis/pack-n-play/commit/06ed42161018af3d520c5f1957a2bddf0da6f92f))
+
+
+### Code Refactoring
+
+* Simplify the module, tests, and remove old interface ([#57](https://github.com/googleapis/pack-n-play/issues/57)) ([f692000](https://github.com/googleapis/pack-n-play/commit/f692000e2763caa39d9f884da42bcf876b18fd81))
+
+
+### Miscellaneous Chores
+
+* Release 2.0.0 ([#147](https://github.com/googleapis/pack-n-play/issues/147)) ([378bc28](https://github.com/googleapis/pack-n-play/commit/378bc28dbab5629aae2e28b43ff7dea57babdc0d))
+
 ## [1.0.0-2](https://www.github.com/google/pack-n-play/compare/v1.0.0-0...v1.0.0-2) (2019-11-10)
 
 
