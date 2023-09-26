@@ -24,7 +24,7 @@
     "test": "c8 mocha build/test"
   },
   "devDependencies": {
-    "@types/mocha": "^9.0.0",
+    "@types/mocha": "^10.0.0",
     "@types/node": "^20.6.3",
     "@types/npm-packlist": "^1.1.1",
     "@types/once": "^1.4.0",
@@ -33,7 +33,7 @@
     "@types/tmp": "0.2.1",
     "c8": "^8.0.1",
     "gts": "^5.0.1",
-    "mocha": "^9.0.0",
+    "mocha": "^10.0.0",
     "typescript": "^5.2.2"
   },
   "dependencies": {
