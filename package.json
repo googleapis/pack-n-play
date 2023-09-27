@@ -26,7 +26,7 @@
   "devDependencies": {
     "@types/mocha": "^9.0.0",
     "@types/node": "^20.6.3",
-    "@types/npm-packlist": "^1.1.1",
+    "@types/npm-packlist": "^7.0.0",
     "@types/once": "^1.4.0",
     "@types/rimraf": "^3.0.0",
     "@types/tar": "^6.1.6",
