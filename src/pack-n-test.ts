@@ -15,6 +15,7 @@
  */
 
 import * as execa from 'execa';
+import * as Arborist from '@npmcli/arborist';
 import * as packlist from 'npm-packlist';
 import * as path from 'path';
 import * as tar from 'tar';
@@ -80,7 +81,9 @@ export async function pack(
   targetDir: string
 ): Promise<string> {
   const packageTarball = path.join(targetDir, 'module-under-test.tgz');
-  const files = await packlist({path: packageDir});
+  const arb = new Arborist({path: packageDir});
+  const tree = await arb.loadActual();
+  const files = await packlist(tree);
   await tar.create(
     {
       prefix: 'package/',
