@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "execa": "^5.0.0",
-    "npm-packlist": "^2.0.0",
+    "npm-packlist": "^8.0.0",
     "once": "^1.4.0",
     "rimraf": "^3.0.0",
     "tar": "^6.2.0",
