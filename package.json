@@ -37,7 +37,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@npmcli/arborist": "^6.3.0",
+    "@npmcli/arborist": "^7.0.0",
     "execa": "^5.0.0",
     "npm-packlist": "^8.0.0",
     "once": "^1.4.0",
