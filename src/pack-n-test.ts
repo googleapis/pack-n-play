@@ -15,17 +15,13 @@
  */
 
 import * as execa from 'execa';
+import * as Arborist from '@npmcli/arborist';
 import * as packlist from 'npm-packlist';
 import * as path from 'path';
 import * as tar from 'tar';
-import {promisify} from 'util';
-import {writeFile} from 'fs';
+import {writeFile} from 'fs/promises';
 import * as tmp from 'tmp';
-import * as rimraf from 'rimraf';
-
-const writeFileP = promisify(writeFile);
-const tmpDirP = promisify(tmp.dir) as () => Promise<string>;
-const rimrafP = promisify(rimraf);
+import {rimraf} from 'rimraf';
 
 // The way the user defines what type of input they're using for their code
 // block is via a property name that reflects either the file extension or
@@ -85,7 +81,9 @@ export async function pack(
   targetDir: string
 ): Promise<string> {
   const packageTarball = path.join(targetDir, 'module-under-test.tgz');
-  const files = await packlist({path: packageDir});
+  const arb = new Arborist({path: packageDir});
+  const tree = await arb.loadActual();
+  const files = await packlist(tree);
   await tar.create(
     {
       prefix: 'package/',
@@ -100,7 +98,7 @@ export async function pack(
 
 export async function packNTest(options: TestOptions) {
   const moduleUnderTest = options.packageDir || process.cwd();
-  const installDir = await tmpDirP();
+  const installDir = tmp.dirSync().name;
 
   try {
     const tarball = await pack(moduleUnderTest, installDir);
@@ -111,7 +109,7 @@ export async function packNTest(options: TestOptions) {
     console.error(err);
     throw err;
   } finally {
-    rimrafP(installDir);
+    await rimraf(installDir);
   }
   return;
 
@@ -142,7 +140,7 @@ export async function packNTest(options: TestOptions) {
 
     // Poupulate test code.
     const {code, filename} = getSample(sample);
-    await writeFileP(path.join(installDir, filename), code, 'utf-8');
+    await writeFile(path.join(installDir, filename), code, 'utf-8');
 
     if (sample.ts) {
       // TODO: maybe make it flexible for users to pass in typescript config.
