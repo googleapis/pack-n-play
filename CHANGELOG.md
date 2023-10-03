@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/googleapis/pack-n-play/compare/v2.0.0...v2.0.1) (2023-09-29)
+
+
+### Bug Fixes
+
+* Add kokoro publish configs, update url and deps ([#149](https://github.com/googleapis/pack-n-play/issues/149)) ([5c70c58](https://github.com/googleapis/pack-n-play/commit/5c70c58f99bb4bc7b094b5ebef0e8440227a0049))
+
 ## [2.0.0](https://github.com/googleapis/pack-n-play/compare/v1.0.0-2...v2.0.0) (2023-09-26)
 
 
