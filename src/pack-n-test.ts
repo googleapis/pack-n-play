@@ -48,6 +48,10 @@ export interface CodeSample {
 interface TestOptions {
   sample: CodeSample;
   packageDir?: string;
+  /**
+   * Path to a `tsconfig.json` file
+   */
+  tsconfig?: string;
 }
 
 interface Sample {
@@ -96,13 +100,18 @@ export async function pack(
   return packageTarball;
 }
 
+/**
+ * `gts`'s `tsconfig.json`.
+ */
+const GTS_CONFIG_PATH = './node_modules/gts/tsconfig.json';
+
 export async function packNTest(options: TestOptions) {
   const moduleUnderTest = options.packageDir || process.cwd();
   const installDir = tmp.dirSync().name;
 
   try {
     const tarball = await pack(moduleUnderTest, installDir);
-    await prepareTarget(tarball, options.sample);
+    await prepareTarget(tarball);
     const filename = getExecFilename(options.sample);
     await execa('node', [filename], {cwd: installDir});
   } catch (err) {
@@ -113,15 +122,21 @@ export async function packNTest(options: TestOptions) {
   }
   return;
 
-  async function prepareTarget(tarball: string, sample: CodeSample) {
+  async function prepareTarget(tarball: string) {
     // Generate a package.json.
     await execa('npm', ['init', '-y'], {cwd: installDir});
+    const sample = options.sample;
+    const tsconfig = options.tsconfig || GTS_CONFIG_PATH;
 
     const dependencies = sample.dependencies || [];
     const devDependencies = sample.devDependencies || [];
 
     if (sample.ts) {
       devDependencies.push('typescript');
+
+      if (tsconfig === GTS_CONFIG_PATH) {
+        devDependencies.push('gts');
+      }
     }
 
     // Add dependencies, including tarball, to package.json.
@@ -138,15 +153,14 @@ export async function packNTest(options: TestOptions) {
       {cwd: installDir}
     );
 
-    // Poupulate test code.
+    // Popupulate test code.
     const {code, filename} = getSample(sample);
     await writeFile(path.join(installDir, filename), code, 'utf-8');
 
     if (sample.ts) {
-      // TODO: maybe make it flexible for users to pass in typescript config.
       await execa(
         'npx',
-        ['tsc', '--target', 'es2018', '--strict', 'index.ts'],
+        ['tsc', '--project', tsconfig, '--strict', 'index.ts'],
         {
           cwd: installDir,
         }
