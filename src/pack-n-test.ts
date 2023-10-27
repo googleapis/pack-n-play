@@ -153,7 +153,7 @@ export async function packNTest(options: TestOptions) {
       {cwd: installDir}
     );
 
-    // Popupulate test code.
+    // Populate test code.
     const {code, filename} = getSample(sample);
     await writeFile(path.join(installDir, filename), code, 'utf-8');
 
