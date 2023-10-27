@@ -144,9 +144,13 @@ export async function packNTest(options: TestOptions) {
 
     if (sample.ts) {
       // TODO: maybe make it flexible for users to pass in typescript config.
-      await execa('npx', ['tsc', '--target', 'es2018', '--strict',  'index.ts'], {
-        cwd: installDir,
-      });
+      await execa(
+        'npx',
+        ['tsc', '--target', 'es2018', '--strict', 'index.ts'],
+        {
+          cwd: installDir,
+        }
+      );
     }
   }
 }
