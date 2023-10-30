@@ -103,7 +103,7 @@ export async function pack(
 /**
  * `gts`'s `tsconfig.json`.
  */
-const GTS_CONFIG_PATH = './node_modules/gts/tsconfig.json';
+const GTS_CONFIG_PATH = './node_modules/gts/tsconfig-google.json';
 
 export async function packNTest(options: TestOptions) {
   const moduleUnderTest = options.packageDir || process.cwd();
@@ -133,6 +133,7 @@ export async function packNTest(options: TestOptions) {
 
     if (sample.ts) {
       devDependencies.push('typescript');
+      devDependencies.push('@types/node');
 
       if (tsconfig === GTS_CONFIG_PATH) {
         devDependencies.push('gts');
@@ -158,13 +159,22 @@ export async function packNTest(options: TestOptions) {
     await writeFile(path.join(installDir, filename), code, 'utf-8');
 
     if (sample.ts) {
-      await execa(
-        'npx',
-        ['tsc', '--project', tsconfig, '--strict', 'index.ts'],
-        {
-          cwd: installDir,
-        }
+      const testConfig = {
+        extends: tsconfig,
+        files: ['index.ts'],
+        compilerOptions: {
+          rootDir: '.',
+          resolveJsonModule: true,
+        },
+      };
+
+      // this is the config `tsc` will use for compilation locally.
+      await writeFile(
+        path.join(installDir, 'tsconfig.json'),
+        JSON.stringify(testConfig)
       );
+
+      await execa('npx', ['tsc'], {cwd: installDir});
     }
   }
 }
