@@ -22,6 +22,16 @@ describe('passing tests', () => {
         description: 'basic passing sample',
         ts: `
           import {doStuff} from 'pass';
+
+          export class Example {
+            // ES 2015+ feature
+            #value = 0;
+
+            getValue () {
+              return this.#value;
+            }
+          }
+
           doStuff().then(console.log);
         `,
       },
