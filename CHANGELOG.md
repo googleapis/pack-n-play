@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/googleapis/pack-n-play/compare/v2.0.1...v2.0.2) (2023-10-31)
+
+
+### Bug Fixes
+
+* Use `gts` to Target Newer Versions of JavaScript ([#164](https://github.com/googleapis/pack-n-play/issues/164)) ([4c0b9a3](https://github.com/googleapis/pack-n-play/commit/4c0b9a311e08865802ba746ccd04b70d48194ffe))
+
 ## [2.0.1](https://github.com/googleapis/pack-n-play/compare/v2.0.0...v2.0.1) (2023-09-29)
 
 
