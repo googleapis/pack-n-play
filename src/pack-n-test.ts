@@ -51,7 +51,7 @@ interface TestOptions {
   /**
    * Path to a `tsconfig.json` file
    */
-  tsconfig?: string;
+  tsconfigPath?: string;
 }
 
 interface Sample {
@@ -126,7 +126,7 @@ export async function packNTest(options: TestOptions) {
     // Generate a package.json.
     await execa('npm', ['init', '-y'], {cwd: installDir});
     const sample = options.sample;
-    const tsconfig = options.tsconfig || GTS_CONFIG_PATH;
+    const tsconfigPath = options.tsconfigPath || GTS_CONFIG_PATH;
 
     const dependencies = sample.dependencies || [];
     const devDependencies = sample.devDependencies || [];
@@ -135,7 +135,7 @@ export async function packNTest(options: TestOptions) {
       devDependencies.push('typescript');
       devDependencies.push('@types/node');
 
-      if (tsconfig === GTS_CONFIG_PATH) {
+      if (tsconfigPath === GTS_CONFIG_PATH) {
         devDependencies.push('gts');
       }
     }
@@ -160,7 +160,7 @@ export async function packNTest(options: TestOptions) {
 
     if (sample.ts) {
       const testConfig = {
-        extends: tsconfig,
+        extends: tsconfigPath,
         files: ['index.ts'],
         compilerOptions: {
           rootDir: '.',
