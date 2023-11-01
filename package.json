@@ -15,6 +15,7 @@
     "Kelvin Jin <kelvinjin@google.com>"
   ],
   "scripts": {
+    "docs": "",
     "lint": "gts check",
     "clean": "gts clean",
     "compile": "tsc",
