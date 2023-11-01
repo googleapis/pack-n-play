@@ -1,2 +1,2 @@
-releaseType: node
 handleGHRelease: true
+releaseType: node

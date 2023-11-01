@@ -3,8 +3,10 @@ branchProtectionRules:
     isAdminEnforced: true
     requiredApprovingReviewCount: 1
     requiresCodeOwnerReviews: true
-    requiresStrictStatusChecks: false
+    requiresStrictStatusChecks: true
     requiredStatusCheckContexts:
+      - "ci/kokoro: Samples test"
+      - "ci/kokoro: System test"
       - lint
       - test (14)
       - test (16)
@@ -12,3 +14,10 @@ branchProtectionRules:
       - cla/google
       - windows
       - OwlBot Post Processor
+permissionRules:
+  - team: yoshi-admins
+    permission: admin
+  - team: jsteam-admins
+    permission: admin
+  - team: jsteam
+    permission: push
