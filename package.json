@@ -15,7 +15,7 @@
     "Kelvin Jin <kelvinjin@google.com>"
   ],
   "scripts": {
-    "docs": "",
+    "docs": "node -e 'fs.mkdirSync(`docs`)'",
     "lint": "gts check",
     "clean": "gts clean",
     "compile": "tsc",
