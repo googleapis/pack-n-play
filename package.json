@@ -15,13 +15,15 @@
     "Kelvin Jin <kelvinjin@google.com>"
   ],
   "scripts": {
-    "docs": "node -e 'fs.mkdirSync(`docs`)'",
-    "lint": "gts check",
     "clean": "gts clean",
     "compile": "tsc",
+    "docs": "node -e 'fs.mkdirSync(`docs`)'",
     "fix": "gts fix",
+    "lint": "gts check",
     "prepare": "npm run compile",
     "pretest": "npm run compile",
+    "samples-test": "",
+    "system-test": "",
     "test": "c8 mocha build/test"
   },
   "devDependencies": {
