@@ -16,7 +16,7 @@ Ensure your library installs and compiles
 A comprehensive list of changes in each version may be found in
 [the CHANGELOG](https://github.com/googleapis/pack-n-play/blob/main/CHANGELOG.md).
 
-
+* [Pack-N-Play Node.js Client API Reference][client-docs]
 
 * [github.com/googleapis/pack-n-play](https://github.com/googleapis/pack-n-play)
 
@@ -48,6 +48,9 @@ npm install pack-n-play
 
 
 
+
+The [Pack-N-Play Node.js Client API Reference][client-docs] documentation
+also contains samples.
 
 ## Supported Node.js Versions
 
@@ -106,7 +109,7 @@ Apache Version 2.0
 
 See [LICENSE](https://github.com/googleapis/pack-n-play/blob/main/LICENSE)
 
-
+[client-docs]: https://github.com/googleapis/pack-n-play
 
 [shell_img]: https://gstatic.com/cloudssh/images/open-btn.png
 [projects]: https://console.cloud.google.com/project
