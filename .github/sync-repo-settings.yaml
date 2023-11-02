@@ -5,8 +5,6 @@ branchProtectionRules:
     requiresCodeOwnerReviews: true
     requiresStrictStatusChecks: true
     requiredStatusCheckContexts:
-      - "ci/kokoro: Samples test"
-      - "ci/kokoro: System test"
       - lint
       - test (14)
       - test (16)
