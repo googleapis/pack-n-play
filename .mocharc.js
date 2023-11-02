@@ -14,7 +14,7 @@
 const config = {
   'enable-source-maps': true,
   'throw-deprecation': true,
-  timeout: 300000,
+  timeout: 10 * 60 * 1000,
   recursive: true,
 };
 
