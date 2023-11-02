@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.3](https://github.com/googleapis/pack-n-play/compare/v2.0.2...v2.0.3) (2023-11-02)
+
+
+### Bug Fixes
+
+* More Configuration Fixes ([#173](https://github.com/googleapis/pack-n-play/issues/173)) ([825ed9f](https://github.com/googleapis/pack-n-play/commit/825ed9faa373fd1f3330cc49d89bf49e25f12288))
+* Publishing Config ([#168](https://github.com/googleapis/pack-n-play/issues/168)) ([95df12f](https://github.com/googleapis/pack-n-play/commit/95df12f4e7eb613e2e3fbdad9327341e77bc2298))
+
 ## [2.0.2](https://github.com/googleapis/pack-n-play/compare/v2.0.1...v2.0.2) (2023-10-31)
 
 
