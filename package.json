@@ -33,7 +33,7 @@
     "@types/once": "^1.4.0",
     "@types/rimraf": "^4.0.5",
     "@types/tar": "^6.1.6",
-    "@types/tmp": "0.2.5",
+    "@types/tmp": "0.2.6",
     "c8": "^8.0.1",
     "gts": "^5.0.1",
     "mocha": "^10.2.0",
