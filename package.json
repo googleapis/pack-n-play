@@ -28,23 +28,23 @@
   },
   "devDependencies": {
     "@types/mocha": "^10.0.2",
-    "@types/node": "^20.6.3",
+    "@types/node": "20.14.1",
     "@types/npm-packlist": "^7.0.1",
     "@types/once": "^1.4.0",
-    "@types/rimraf": "^4.0.5",
+    "@types/rimraf": "4.0.5",
     "@types/tar": "^6.1.6",
     "@types/tmp": "0.2.6",
     "c8": "^9.0.0",
     "gts": "^5.0.1",
     "mocha": "^10.2.0",
-    "typescript": "^5.2.2"
+    "typescript": "5.2.2"
   },
   "dependencies": {
     "@npmcli/arborist": "^6.3.0",
     "execa": "^5.0.0",
     "npm-packlist": "^8.0.0",
     "once": "^1.4.0",
-    "rimraf": "^5.0.5",
+    "rimraf": "5.0.5",
     "tar": "^6.2.0",
     "tmp": "0.2.1"
   },
