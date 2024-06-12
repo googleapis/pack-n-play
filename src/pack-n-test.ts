@@ -67,12 +67,12 @@ function getSample(sample: CodeSample): Sample {
   return sample.ts
     ? {code: String(sample.ts), filename: 'index.ts'}
     : sample.esm
-    ? {code: String(sample.esm), filename: 'index.mjs'}
-    : sample.mjs
-    ? {code: String(sample.mjs), filename: 'index.mjs'}
-    : sample.cjs
-    ? {code: String(sample.cjs), filename: 'index.cjs'}
-    : {code: String(sample.js), filename: 'index.js'};
+      ? {code: String(sample.esm), filename: 'index.mjs'}
+      : sample.mjs
+        ? {code: String(sample.mjs), filename: 'index.mjs'}
+        : sample.cjs
+          ? {code: String(sample.cjs), filename: 'index.cjs'}
+          : {code: String(sample.js), filename: 'index.js'};
 }
 
 function getExecFilename(sample: CodeSample): string {
