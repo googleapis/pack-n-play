@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as long from 'long';
+import {long} from 'long';
 
 export async function getLong() {
   return long.MAX_VALUE;
