@@ -3,8 +3,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "outDir": "build",
-    "allowSyntheticDefaultImports": false,
-    "skipLibCheck": true
+    "allowSyntheticDefaultImports": false
   },
   "include": [
     "src/*.ts",
