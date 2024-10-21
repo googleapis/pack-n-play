@@ -36,9 +36,8 @@
     "@types/tmp": "0.2.6",
     "c8": "^9.0.0",
     "gts": "^5.0.1",
-    "lru-cache": "10.4.3",
     "mocha": "^10.2.0",
-    "typescript": "5.2.2"
+    "typescript": "^5.2.2"
   },
   "dependencies": {
     "@npmcli/arborist": "^6.3.0",
