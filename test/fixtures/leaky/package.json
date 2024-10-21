@@ -12,7 +12,7 @@
   "main": "build/src/index.js",
   "scripts": {
     "prepare": "npm run compile",
-    "compile": "tsc",
+    "compile": "tsc -p tscong.json",
     "test": "mocha build/test",
     "pretest": "npm run compile",
     "lint": "gts check",
