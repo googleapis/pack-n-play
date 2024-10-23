@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "clean": "gts clean",
-    "compile": "tsc",
+    "compile": "tsc -p tsconfig.json",
     "docs": "node -e 'fs.mkdirSync(`docs`)'",
     "fix": "gts fix",
     "lint": "gts check",

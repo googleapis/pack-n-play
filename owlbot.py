@@ -22,5 +22,8 @@ logging.basicConfig(level=logging.DEBUG)
 node.owlbot_main(
     templates_excludes=[
         ".mocharc.js",
+        ".github/ISSUE_TEMPLATE",
+        ".github/scripts/close-invalid-link.cjs",
+        ".github/workflows/issues-no-repro.yaml"
     ],
 )
