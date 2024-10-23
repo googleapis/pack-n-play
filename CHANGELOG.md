@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.4](https://github.com/googleapis/pack-n-play/compare/v2.0.3...v2.0.4) (2024-10-23)
+
+
+### Bug Fixes
+
+* **deps:** Update dependency tmp to v0.2.3 ([#183](https://github.com/googleapis/pack-n-play/issues/183)) ([bf12806](https://github.com/googleapis/pack-n-play/commit/bf1280621606a54da32191f12b5414d3b5413ea3))
+
 ## [2.0.3](https://github.com/googleapis/pack-n-play/compare/v2.0.2...v2.0.3) (2023-11-02)
 
 
