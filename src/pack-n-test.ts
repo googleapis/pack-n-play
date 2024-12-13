@@ -165,7 +165,6 @@ export async function packNTest(options: TestOptions) {
         compilerOptions: {
           rootDir: '.',
           resolveJsonModule: true,
-          allowSyntheticDefaultImports: true,
         },
       };
 
