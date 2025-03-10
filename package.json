@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@npmcli/arborist": "^8.0.0",
-    "execa": "^7.0.0",
+    "execa": "^6.0.0",
     "npm-packlist": "^9.0.0",
     "once": "^1.4.0",
     "rimraf": "^5.0.1",
