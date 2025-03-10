@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.1.0](https://github.com/googleapis/pack-n-play/compare/v2.0.3...v2.1.0) (2024-12-05)
+
+
+### Features
+
+* Allow synthetic default imports when testing typescript for esm ([#203](https://github.com/googleapis/pack-n-play/issues/203)) ([ac33320](https://github.com/googleapis/pack-n-play/commit/ac3332052d4c522236acde2b7044bec11855e239))
+
+
+### Bug Fixes
+
+* **deps:** Update dependency tmp to v0.2.3 ([#183](https://github.com/googleapis/pack-n-play/issues/183)) ([bf12806](https://github.com/googleapis/pack-n-play/commit/bf1280621606a54da32191f12b5414d3b5413ea3))
+
 ## [2.0.3](https://github.com/googleapis/pack-n-play/compare/v2.0.2...v2.0.3) (2023-11-02)
 
 
