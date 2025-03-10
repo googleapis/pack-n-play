@@ -14,7 +14,7 @@
 
 import * as path from 'path';
 import * as fs from 'fs';
-import {execa} from 'execa';
+import {execa, Options} from 'execa';
 import {describe, it} from 'mocha';
 
 describe('pack-n-play', () => {
@@ -25,7 +25,7 @@ describe('pack-n-play', () => {
       .map(i => path.join(fixturesPath, i))
       .filter(i => fs.statSync(i).isDirectory());
     for (const dir of dirs) {
-      const opts: execa.Options = {
+      const opts: Options = {
         stdio: 'inherit',
         cwd: dir,
       };
