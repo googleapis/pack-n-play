@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import * as execa from 'execa';
+import {execa} from 'execa';
 import * as Arborist from '@npmcli/arborist';
 import * as packlist from 'npm-packlist';
 import * as path from 'path';
