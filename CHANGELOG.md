@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/pack-n-play/compare/v2.1.0...v3.0.0) (2025-03-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* fix `npm` for Node v18 samples tests ([#202](https://github.com/googleapis/pack-n-play/issues/202))
+
+### Miscellaneous Chores
+
+* Fix `npm` for Node v18 samples tests ([#202](https://github.com/googleapis/pack-n-play/issues/202)) ([c42562b](https://github.com/googleapis/pack-n-play/commit/c42562b52fd573e50045861ad5dfa2019d72cefa))
+
 ## [2.1.0](https://github.com/googleapis/pack-n-play/compare/v2.0.3...v2.1.0) (2024-12-05)
 
 
