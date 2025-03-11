@@ -82,7 +82,7 @@ function getExecFilename(sample: CodeSample): string {
 
 export async function pack(
   packageDir: string,
-  targetDir: string
+  targetDir: string,
 ): Promise<string> {
   const packageTarball = path.join(targetDir, 'module-under-test.tgz');
   const arb = new Arborist({path: packageDir});
@@ -95,7 +95,7 @@ export async function pack(
       file: packageTarball,
       gzip: true,
     },
-    files
+    files,
   );
   return packageTarball;
 }
@@ -145,13 +145,13 @@ export async function packNTest(options: TestOptions) {
     await execa(
       'npm',
       ['install', '--prefer-offline', '--save', tarball].concat(dependencies),
-      {cwd: installDir}
+      {cwd: installDir},
     );
 
     await execa(
       'npm',
       ['install', '--prefer-offline', '--save-dev'].concat(devDependencies),
-      {cwd: installDir}
+      {cwd: installDir},
     );
 
     // Populate test code.
@@ -171,7 +171,7 @@ export async function packNTest(options: TestOptions) {
       // this is the config `tsc` will use for compilation locally.
       await writeFile(
         path.join(installDir, 'tsconfig.json'),
-        JSON.stringify(testConfig)
+        JSON.stringify(testConfig),
       );
 
       await execa('npx', ['tsc'], {cwd: installDir});
