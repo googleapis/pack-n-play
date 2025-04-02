@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/pack-n-play/compare/v3.0.0...v3.0.1) (2025-04-02)
+
+
+### Bug Fixes
+
+* Update pack-n-play to 2023 compiler option to match gts ([#210](https://github.com/googleapis/pack-n-play/issues/210)) ([259c14c](https://github.com/googleapis/pack-n-play/commit/259c14c591fe18c3fd91136d265414d5fcb37391))
+
 ## [3.0.0](https://github.com/googleapis/pack-n-play/compare/v2.1.0...v3.0.0) (2025-03-11)
 
 
