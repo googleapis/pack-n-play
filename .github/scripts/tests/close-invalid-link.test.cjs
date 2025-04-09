@@ -15,7 +15,7 @@
 'use strict';
 
 const { describe, it } = require('mocha');
-const closeInvalidLink = require('../../scripts/close-invalid-link.cjs');
+const closeInvalidLink = require('../close-invalid-link.cjs');
 const fs = require('fs');
 const sinon = require('sinon');
 
