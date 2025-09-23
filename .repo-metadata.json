@@ -6,6 +6,5 @@
   "repo": "googleapis/pack-n-play",
   "distribution_name": "pack-n-play",
   "client_documentation": "https://github.com/googleapis/pack-n-play",
-  "codeowner_team": "@googleapis/jsteam",
   "library_type": "OTHER"
 }

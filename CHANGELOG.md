@@ -1,5 +1,35 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/pack-n-play/compare/v3.0.0...v3.0.1) (2025-04-02)
+
+
+### Bug Fixes
+
+* Update pack-n-play to 2023 compiler option to match gts ([#210](https://github.com/googleapis/pack-n-play/issues/210)) ([259c14c](https://github.com/googleapis/pack-n-play/commit/259c14c591fe18c3fd91136d265414d5fcb37391))
+
+## [3.0.0](https://github.com/googleapis/pack-n-play/compare/v2.1.0...v3.0.0) (2025-03-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* fix `npm` for Node v18 samples tests ([#202](https://github.com/googleapis/pack-n-play/issues/202))
+
+### Miscellaneous Chores
+
+* Fix `npm` for Node v18 samples tests ([#202](https://github.com/googleapis/pack-n-play/issues/202)) ([c42562b](https://github.com/googleapis/pack-n-play/commit/c42562b52fd573e50045861ad5dfa2019d72cefa))
+
+## [2.1.0](https://github.com/googleapis/pack-n-play/compare/v2.0.3...v2.1.0) (2024-12-05)
+
+
+### Features
+
+* Allow synthetic default imports when testing typescript for esm ([#203](https://github.com/googleapis/pack-n-play/issues/203)) ([ac33320](https://github.com/googleapis/pack-n-play/commit/ac3332052d4c522236acde2b7044bec11855e239))
+
+
+### Bug Fixes
+
+* **deps:** Update dependency tmp to v0.2.3 ([#183](https://github.com/googleapis/pack-n-play/issues/183)) ([bf12806](https://github.com/googleapis/pack-n-play/commit/bf1280621606a54da32191f12b5414d3b5413ea3))
+
 ## [2.0.3](https://github.com/googleapis/pack-n-play/compare/v2.0.2...v2.0.3) (2023-11-02)
 
 
